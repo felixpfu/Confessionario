@@ -1,6 +1,13 @@
+LEIA ISSO TUDO ANTES DE QUERER ROUBAR A IDEIA
 
-1) Frontend (React)
-O frontend foi feito em React com Vite
+TO LIGA‎DO QUE ESSE ME_LEIA CHAMOU A TUA IDEIA 
+
+🫥  Tá mais como funciona essa bosta?
+
+😑 Calma ae paizão, vamos por partes...
+
+
+𝟏) Frontend (React e Vite): 
 
 É ele que:
 
@@ -10,11 +17,8 @@ O frontend foi feito em React com Vite
 - Mostra o feed público
 - Envia as mensagens pro servidor
 - Busca as mensagens já postadas
+
   
-🫥  Tá mais como funciona essa bosta?
-
-😑 Calma ae paizão, vamos por partes...
-
 Quando a pessoa abre o site:
 
 - Primeiro aparece uma animação de abertura
@@ -23,9 +27,10 @@ Quando a pessoa abre o site:
 
 Vê um exemplo meu aí do que ele pede:
 
-GET /messages → para carregar as mensagens
-POST /messages → para enviar uma nova mensagem
-Ou seja: o frontend não salva porra nenhuma sozinho, ele só bate papo com o backend
+ GET /messages → para carregar as mensagens
+ 
+ POST /messages → para enviar uma nova mensagem
+- Ou seja: o frontend não salva porra nenhuma sozinho, ele só bate papo com o backend
 
 ------------------------------------------------
 
@@ -74,10 +79,11 @@ Então o banco guarda as mensagens, mas o backend decide quais ainda podem ser m
 
 ------------------------------------------------
 
- Pra fazer rodar, primeiro baixe o Docker Desktop (ja que eu rodo o PostgreSQL dentro de um container, manuseio mais facil),
- deixe duas janelas do Terinal (Ou no Powershell se estiver no Windows), uma pro Client e outra pro Server.
+ Pra fazer rodar, primeiro baixe o Docker Desktop (ja que eu rodo o PostgreSQL dentro de um container, manuseio mais facil)
+ 
+ Deixe duas janelas do Terinal (Ou no Powershell se estiver no Windows), uma pro Client e outra pro Server.
 
- Já que o processo é o mesmo pros dois, vou facilitar pra você
+ (Já que o processo é o mesmo pros dois, vou facilitar pra você e resumir os processos)
                                                                      
  - Identifica pra mim aí onde tá o folder 'client' ou 'server' no teu Terminal/Powershell
  - Roda o comando 'npm run dev'
@@ -86,7 +92,7 @@ Então o banco guarda as mensagens, mas o backend decide quais ainda podem ser m
 Enfim, ele roda no localhost porque eu não tive capacidade e tempo pra lançar ao público.
 Se você fazer rodar ele usando o IP da sua internet local, qualquer um pode usar o confessionário e vira um site de chat.
 
-Se quiser comprar a ideia de mim, me manda um email: felix@stendec.io
+Se quiser comprar a ideia de mim ou tiver uma dúvida, me manda um email: felix@stendec.io
 
 
 
