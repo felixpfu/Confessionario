@@ -90,7 +90,7 @@ Então o banco guarda as mensagens, mas o backend decide quais ainda podem ser m
  - Lembre que essas aspas NÃO devem ser digitadas no Terminal/Powershell, pode dar erro   
 
 Enfim, ele roda no localhost porque eu não tive capacidade e tempo pra lançar ao público.
-Se você fazer rodar ele usando o IP da sua internet local, qualquer um pode usar o confessionário e vira um site de chat.
+Se você fazer ele rodar usando o IP da sua internet local, qualquer um concectado a sua rede pode usar o confessionário, tornando o site em um chat.
 
 Se quiser comprar a ideia de mim ou tiver uma dúvida, me manda um email: felix@stendec.io
 
