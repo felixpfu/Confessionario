@@ -2,7 +2,7 @@ LEIA ISSO TUDO ANTES DE QUERER ROUBAR A IDEIA
 
 TO LIGA‎DO QUE ESSE ME_LEIA CHAMOU A TUA ATENÇÃO :) 
 
-🫥  Tá mais como funciona essa bosta?
+🫥  Tá mais como funciona essa b0st@?
 
 😑 Calma ae paizão, vamos por partes...
 
