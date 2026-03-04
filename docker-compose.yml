@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: confess_ttl_db
+    environment:
+      POSTGRES_USER: confess
+      POSTGRES_PASSWORD: confess
+      POSTGRES_DB: confess_ttl
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
