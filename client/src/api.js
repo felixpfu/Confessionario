@@ -1,4 +1,4 @@
-const API_BASE = "http://10.10.29.132:3001";
+const API_BASE = "http://localhost:3001";
 
 export async function fetchMessages() {
   const r = await fetch(`${API_BASE}/messages`);
@@ -16,3 +16,4 @@ export async function postMessage({ content, ttlSeconds }) {
   if (!r.ok) throw new Error(data?.error || "Falha ao enviar");
   return data;
 }
+
