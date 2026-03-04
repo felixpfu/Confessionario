@@ -34,7 +34,7 @@ Vê um exemplo meu aí do que ele pede:
 
 ------------------------------------------------
 
-2) Backend (Node.js + Express) 
+𝟐) Backend (Node.js + Express) 
 
 É ele que:
 
@@ -60,7 +60,7 @@ O Backend também faz algumas proteções:
 
 ------------------------------------------------
 
-3) Banco de dados (PostgreSQL)
+𝟑) Banco de dados (PostgreSQL)
 
 Cada mensagem salva tem, por exemplo:
 
