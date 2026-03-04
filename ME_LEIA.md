@@ -30,7 +30,7 @@ Vê um exemplo meu aí do que ele pede:
  GET /messages → para carregar as mensagens
  
  POST /messages → para enviar uma nova mensagem
-- Ou seja: o frontend não salva porra nenhuma sozinho, ele só bate papo com o backend
+- Ou seja: o frontend não salva porra nenhuma sozinho, ele só bate papo com o backend.
 
 ------------------------------------------------
 
@@ -75,7 +75,7 @@ A lógica principal é:
 - Se já venceu, ela não aparece mais
 - Periodicamente, mensagens expiradas podem ser removidas
 
-Então o banco guarda as mensagens, mas o backend decide quais ainda podem ser mostradas
+Então o banco guarda as mensagens, mas o backend decide quais ainda podem ser mostradas.
 
 ------------------------------------------------
 
