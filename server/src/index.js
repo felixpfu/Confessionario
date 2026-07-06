@@ -1,11 +1,19 @@
 import express from "express";
+import fs from "fs";
 import helmet from "helmet";
 import cors from "cors";
+import path from "path";
 import rateLimit from "express-rate-limit";
+import { fileURLToPath } from "url";
 import "dotenv/config";
 import { registerMessageRoutes } from "./routes.messages.js";
 import { startCleanupJob } from "./cleanup.js";
 import { checkMessageStore, useMemoryStore } from "./messages.store.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const clientDistPath = path.resolve(__dirname, "../../client/dist");
+const clientIndexPath = path.join(clientDistPath, "index.html");
 
 const app = express();
 
@@ -25,7 +33,6 @@ const getLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false
 });
-app.get("/messages", getLimiter);
 
 // limite forte (anti-spam)
 const postLimiter = rateLimit({
@@ -35,10 +42,16 @@ const postLimiter = rateLimit({
   legacyHeaders: false,
   message: { error: "Calma aí: limite de posts atingido. Tenta de novo depois." }
 });
-app.post("/messages", postLimiter);
+
+const messageRouter = express.Router();
+messageRouter.get("/messages", getLimiter);
+messageRouter.post("/messages", postLimiter);
+registerMessageRoutes(messageRouter);
+app.use("/", messageRouter);
+app.use("/api", messageRouter);
 
 // Health check
-app.get("/health", async (_, res) => {
+app.get(["/health", "/api/health"], async (_, res) => {
   try {
     const store = await checkMessageStore();
     res.json(store);
@@ -46,8 +59,20 @@ app.get("/health", async (_, res) => {
     res.status(500).json({ ok: false, store: useMemoryStore ? "memory" : "postgres" });
   }
 });
+app.use("/api", (_, res) => {
+  res.status(404).json({ error: "Rota da API não encontrada." });
+});
 
-registerMessageRoutes(app);
+if (fs.existsSync(clientIndexPath)) {
+  app.use(express.static(clientDistPath));
+  app.get("*", (_, res) => {
+    res.sendFile(clientIndexPath);
+  });
+} else {
+  app.get("/", (_, res) => {
+    res.status(503).send("Frontend build não encontrado. Rode `npm --prefix client run build`.");
+  });
+}
 
 startCleanupJob();
 
