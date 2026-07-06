@@ -1,9 +1,9 @@
-import { pool } from "./db.js";
+import { cleanupExpiredMessages } from "./messages.store.js";
 
 export function startCleanupJob() {
   setInterval(async () => {
     try {
-      await pool.query("DELETE FROM messages WHERE expires_at <= NOW()");
+      await cleanupExpiredMessages();
     } catch (err) {
       console.error("[cleanup] error:", err?.message || err);
     }

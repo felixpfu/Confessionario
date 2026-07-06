@@ -3,20 +3,20 @@ import helmet from "helmet";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
 import "dotenv/config";
-import { pool } from "./db.js";
 import { registerMessageRoutes } from "./routes.messages.js";
 import { startCleanupJob } from "./cleanup.js";
+import { checkMessageStore, useMemoryStore } from "./messages.store.js";
 
 const app = express();
 
 app.use(helmet());
 app.use(express.json({ limit: "64kb" }));
 
-app.use(
-  cors({
-    origin: "*"
-  })
-);
+const corsOrigin = (process.env.CORS_ORIGIN || "http://localhost:5173,http://localhost:5174")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+app.use(cors({ origin: corsOrigin }));
 
 
 const getLimiter = rateLimit({
@@ -40,10 +40,10 @@ app.post("/messages", postLimiter);
 // Health check
 app.get("/health", async (_, res) => {
   try {
-    await pool.query("SELECT 1");
-    res.json({ ok: true });
+    const store = await checkMessageStore();
+    res.json(store);
   } catch {
-    res.status(500).json({ ok: false });
+    res.status(500).json({ ok: false, store: useMemoryStore ? "memory" : "postgres" });
   }
 });
 
@@ -52,6 +52,7 @@ registerMessageRoutes(app);
 startCleanupJob();
 
 const port = Number(process.env.PORT || 3001);
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server rodando em http://10.10.29.132:${port}`);
+const host = process.env.HOST || "localhost";
+app.listen(port, host, () => {
+  console.log(`Server rodando em http://${host}:${port}`);
 });
